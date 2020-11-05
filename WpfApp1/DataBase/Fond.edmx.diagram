@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3d28338144ad47c687224fcba8c3643e" Name="Diagram1">
+        <EntityTypeShape EntityType="SocFondModel.C_Statement" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocFondModel.Declarant" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocFondModel.Post" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocFondModel.SocialStatus" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocFondModel.Status" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SocFondModel.WorkerMfc" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <AssociationConnector Association="SocFondModel.FK___Statemen__Passp__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="SocFondModel.FK___Statemen__Statu__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="SocFondModel.FK___Statemen__Worke__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="SocFondModel.FK__Declarant__Socia__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="SocFondModel.FK__WorkerMfc__PostW__4BAC3F29" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

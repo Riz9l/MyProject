@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище SocFondModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name=" Statement">
+          <Key>
+            <PropertyRef Name="IdStatement" />
+          </Key>
+          <Property Name="IdStatement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Worker" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassportDeclarant" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FamilyInn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FamilyInn1" Type="nvarchar" MaxLength="50" />
+          <Property Name="FamilyInn2" Type="nvarchar" MaxLength="50" />
+          <Property Name="FamilyInn3" Type="nvarchar" MaxLength="50" />
+          <Property Name="FamilyInn4" Type="nvarchar" MaxLength="50" />
+          <Property Name="FamilyInn5" Type="nvarchar" MaxLength="50" />
+          <Property Name="StatusStatement" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Declarant">
+          <Key>
+            <PropertyRef Name="PassportDeclarant" />
+          </Key>
+          <Property Name="PassportDeclarant" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateOfbirth" Type="datetime" Nullable="false" />
+          <Property Name="SocialStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdSingleHousingDocument" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ActualAddressOfResidence" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegistrationAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Post" />
+          </Key>
+          <Property Name="Post" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SocialStatus">
+          <Key>
+            <PropertyRef Name="SocialStatus" />
+          </Key>
+          <Property Name="SocialStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="Status" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkerMfc">
+          <Key>
+            <PropertyRef Name="PassportWorker" />
+          </Key>
+          <Property Name="PassportWorker" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PostWorker" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ Statemen__Passp__628FA481">
+          <End Role="Declarant" Type="Self.Declarant" Multiplicity="1" />
+          <End Role=" Statement" Type="Self. Statement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Declarant">
+              <PropertyRef Name="PassportDeclarant" />
+            </Principal>
+            <Dependent Role=" Statement">
+              <PropertyRef Name="PassportDeclarant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ Statemen__Statu__60A75C0F">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role=" Statement" Type="Self. Statement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Status" />
+            </Principal>
+            <Dependent Role=" Statement">
+              <PropertyRef Name="StatusStatement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ Statemen__Worke__619B8048">
+          <End Role="WorkerMfc" Type="Self.WorkerMfc" Multiplicity="1" />
+          <End Role=" Statement" Type="Self. Statement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerMfc">
+              <PropertyRef Name="PassportWorker" />
+            </Principal>
+            <Dependent Role=" Statement">
+              <PropertyRef Name="Worker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Declarant__Socia__5DCAEF64">
+          <End Role="SocialStatus" Type="Self.SocialStatus" Multiplicity="1" />
+          <End Role="Declarant" Type="Self.Declarant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SocialStatus">
+              <PropertyRef Name="SocialStatus" />
+            </Principal>
+            <Dependent Role="Declarant">
+              <PropertyRef Name="SocialStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WorkerMfc__PostW__4BAC3F29">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="WorkerMfc" Type="Self.WorkerMfc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Post" />
+            </Principal>
+            <Dependent Role="WorkerMfc">
+              <PropertyRef Name="PostWorker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SocFondModelContainer">
+          <EntitySet Name=" Statement" EntityType="Self. Statement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Declarant" EntityType="Self.Declarant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SocialStatus" EntityType="Self.SocialStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkerMfc" EntityType="Self.WorkerMfc" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ Statemen__Passp__628FA481" Association="Self.FK__ Statemen__Passp__628FA481">
+            <End Role="Declarant" EntitySet="Declarant" />
+            <End Role=" Statement" EntitySet=" Statement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ Statemen__Statu__60A75C0F" Association="Self.FK__ Statemen__Statu__60A75C0F">
+            <End Role="Status" EntitySet="Status" />
+            <End Role=" Statement" EntitySet=" Statement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ Statemen__Worke__619B8048" Association="Self.FK__ Statemen__Worke__619B8048">
+            <End Role="WorkerMfc" EntitySet="WorkerMfc" />
+            <End Role=" Statement" EntitySet=" Statement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Declarant__Socia__5DCAEF64" Association="Self.FK__Declarant__Socia__5DCAEF64">
+            <End Role="SocialStatus" EntitySet="SocialStatus" />
+            <End Role="Declarant" EntitySet="Declarant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WorkerMfc__PostW__4BAC3F29" Association="Self.FK__WorkerMfc__PostW__4BAC3F29">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="WorkerMfc" EntitySet="WorkerMfc" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SocFondModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C_Statement">
+          <Key>
+            <PropertyRef Name="IdStatement" />
+          </Key>
+          <Property Name="IdStatement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Worker" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassportDeclarant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FamilyInn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FamilyInn1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FamilyInn2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FamilyInn3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FamilyInn4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FamilyInn5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StatusStatement" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Declarant" Relationship="Self.FK___Statemen__Passp__628FA481" FromRole="C_Statement" ToRole="Declarant" />
+          <NavigationProperty Name="Status" Relationship="Self.FK___Statemen__Statu__60A75C0F" FromRole="C_Statement" ToRole="Status" />
+          <NavigationProperty Name="WorkerMfc" Relationship="Self.FK___Statemen__Worke__619B8048" FromRole="C_Statement" ToRole="WorkerMfc" />
+        </EntityType>
+        <EntityType Name="Declarant">
+          <Key>
+            <PropertyRef Name="PassportDeclarant" />
+          </Key>
+          <Property Name="PassportDeclarant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfbirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SocialStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdSingleHousingDocument" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActualAddressOfResidence" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegistrationAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C_Statement" Relationship="Self.FK___Statemen__Passp__628FA481" FromRole="Declarant" ToRole="C_Statement" />
+          <NavigationProperty Name="SocialStatus1" Relationship="Self.FK__Declarant__Socia__5DCAEF64" FromRole="Declarant" ToRole="SocialStatus" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Post1" />
+          </Key>
+          <Property Name="Post1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="WorkerMfc" Relationship="Self.FK__WorkerMfc__PostW__4BAC3F29" FromRole="Post" ToRole="WorkerMfc" />
+        </EntityType>
+        <EntityType Name="SocialStatus">
+          <Key>
+            <PropertyRef Name="SocialStatus1" />
+          </Key>
+          <Property Name="SocialStatus1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Declarant" Relationship="Self.FK__Declarant__Socia__5DCAEF64" FromRole="SocialStatus" ToRole="Declarant" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Status1" />
+          </Key>
+          <Property Name="Status1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C_Statement" Relationship="Self.FK___Statemen__Statu__60A75C0F" FromRole="Status" ToRole="C_Statement" />
+        </EntityType>
+        <EntityType Name="WorkerMfc">
+          <Key>
+            <PropertyRef Name="PassportWorker" />
+          </Key>
+          <Property Name="PassportWorker" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostWorker" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="C_Statement" Relationship="Self.FK___Statemen__Worke__619B8048" FromRole="WorkerMfc" ToRole="C_Statement" />
+          <NavigationProperty Name="Post" Relationship="Self.FK__WorkerMfc__PostW__4BAC3F29" FromRole="WorkerMfc" ToRole="Post" />
+        </EntityType>
+        <Association Name="FK___Statemen__Passp__628FA481">
+          <End Role="Declarant" Type="Self.Declarant" Multiplicity="1" />
+          <End Role="C_Statement" Type="Self.C_Statement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Declarant">
+              <PropertyRef Name="PassportDeclarant" />
+            </Principal>
+            <Dependent Role="C_Statement">
+              <PropertyRef Name="PassportDeclarant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK___Statemen__Statu__60A75C0F">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="C_Statement" Type="Self.C_Statement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Status1" />
+            </Principal>
+            <Dependent Role="C_Statement">
+              <PropertyRef Name="StatusStatement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK___Statemen__Worke__619B8048">
+          <End Role="WorkerMfc" Type="Self.WorkerMfc" Multiplicity="1" />
+          <End Role="C_Statement" Type="Self.C_Statement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerMfc">
+              <PropertyRef Name="PassportWorker" />
+            </Principal>
+            <Dependent Role="C_Statement">
+              <PropertyRef Name="Worker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Declarant__Socia__5DCAEF64">
+          <End Role="SocialStatus" Type="Self.SocialStatus" Multiplicity="1" />
+          <End Role="Declarant" Type="Self.Declarant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SocialStatus">
+              <PropertyRef Name="SocialStatus1" />
+            </Principal>
+            <Dependent Role="Declarant">
+              <PropertyRef Name="SocialStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WorkerMfc__PostW__4BAC3F29">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="WorkerMfc" Type="Self.WorkerMfc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Post1" />
+            </Principal>
+            <Dependent Role="WorkerMfc">
+              <PropertyRef Name="PostWorker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SocFondEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C_Statement" EntityType="Self.C_Statement" />
+          <EntitySet Name="Declarant" EntityType="Self.Declarant" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="SocialStatus" EntityType="Self.SocialStatus" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="WorkerMfc" EntityType="Self.WorkerMfc" />
+          <AssociationSet Name="FK___Statemen__Passp__628FA481" Association="Self.FK___Statemen__Passp__628FA481">
+            <End Role="Declarant" EntitySet="Declarant" />
+            <End Role="C_Statement" EntitySet="C_Statement" />
+          </AssociationSet>
+          <AssociationSet Name="FK___Statemen__Statu__60A75C0F" Association="Self.FK___Statemen__Statu__60A75C0F">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="C_Statement" EntitySet="C_Statement" />
+          </AssociationSet>
+          <AssociationSet Name="FK___Statemen__Worke__619B8048" Association="Self.FK___Statemen__Worke__619B8048">
+            <End Role="WorkerMfc" EntitySet="WorkerMfc" />
+            <End Role="C_Statement" EntitySet="C_Statement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Declarant__Socia__5DCAEF64" Association="Self.FK__Declarant__Socia__5DCAEF64">
+            <End Role="SocialStatus" EntitySet="SocialStatus" />
+            <End Role="Declarant" EntitySet="Declarant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WorkerMfc__PostW__4BAC3F29" Association="Self.FK__WorkerMfc__PostW__4BAC3F29">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="WorkerMfc" EntitySet="WorkerMfc" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SocFondModelContainer" CdmEntityContainer="SocFondEntities">
+          <EntitySetMapping Name="C_Statement">
+            <EntityTypeMapping TypeName="SocFondModel.C_Statement">
+              <MappingFragment StoreEntitySet=" Statement">
+                <ScalarProperty Name="IdStatement" ColumnName="IdStatement" />
+                <ScalarProperty Name="Worker" ColumnName="Worker" />
+                <ScalarProperty Name="PassportDeclarant" ColumnName="PassportDeclarant" />
+                <ScalarProperty Name="FamilyInn" ColumnName="FamilyInn" />
+                <ScalarProperty Name="FamilyInn1" ColumnName="FamilyInn1" />
+                <ScalarProperty Name="FamilyInn2" ColumnName="FamilyInn2" />
+                <ScalarProperty Name="FamilyInn3" ColumnName="FamilyInn3" />
+                <ScalarProperty Name="FamilyInn4" ColumnName="FamilyInn4" />
+                <ScalarProperty Name="FamilyInn5" ColumnName="FamilyInn5" />
+                <ScalarProperty Name="StatusStatement" ColumnName="StatusStatement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Declarant">
+            <EntityTypeMapping TypeName="SocFondModel.Declarant">
+              <MappingFragment StoreEntitySet="Declarant">
+                <ScalarProperty Name="PassportDeclarant" ColumnName="PassportDeclarant" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="DateOfbirth" ColumnName="DateOfbirth" />
+                <ScalarProperty Name="SocialStatus" ColumnName="SocialStatus" />
+                <ScalarProperty Name="IdSingleHousingDocument" ColumnName="IdSingleHousingDocument" />
+                <ScalarProperty Name="ActualAddressOfResidence" ColumnName="ActualAddressOfResidence" />
+                <ScalarProperty Name="RegistrationAddress" ColumnName="RegistrationAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="SocFondModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="Post1" ColumnName="Post" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SocialStatus">
+            <EntityTypeMapping TypeName="SocFondModel.SocialStatus">
+              <MappingFragment StoreEntitySet="SocialStatus">
+                <ScalarProperty Name="SocialStatus1" ColumnName="SocialStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="SocFondModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Status1" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerMfc">
+            <EntityTypeMapping TypeName="SocFondModel.WorkerMfc">
+              <MappingFragment StoreEntitySet="WorkerMfc">
+                <ScalarProperty Name="PassportWorker" ColumnName="PassportWorker" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PostWorker" ColumnName="PostWorker" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

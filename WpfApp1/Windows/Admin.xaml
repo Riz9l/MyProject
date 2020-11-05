@@ -1,0 +1,78 @@
+﻿<Window x:Name="WinAdmin" x:Class="WpfApp1.Windows.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Windows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Панель администратора" Height="489" Width="1000" Closed="Window_Closed" SizeChanged="WinAdmin_SizeChanged">
+    <Grid Background="#FF181B28">
+        <TabControl TabStripPlacement="Left"  Background="#FF181B28">
+            <TabItem x:Name="TIWorker" Width="80" Height="151" Header="Работники"  Background="#FF181B28" Foreground="Gray">
+                <Grid x:Name="Grid1" Background="#FF181B28" Margin="0,1,-5,-1">
+
+
+                    <DataGrid x:Name="DGWorker" Background="#FF181B28"  Margin="-2,-3,2,115" AutoGenerateColumns="False" IsReadOnly="True" SelectedCellsChanged="DGWorker_SelectedCellsChanged" Foreground="#FF0C0101">
+                        <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Foreground" Value="WhiteSmoke" />
+                            </Style>
+                        </DataGrid.Resources>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="0.2*" Foreground="WhiteSmoke" Header="Паспортные данные" Binding="{Binding PassportWorker }" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Foreground="WhiteSmoke" Header="Фамилия" Binding="{Binding Lastname}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Foreground="WhiteSmoke" Header="Имя" Binding="{Binding Firstname}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Foreground="WhiteSmoke" Header="Отчество" Binding="{Binding Surname}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Foreground="WhiteSmoke" Header="Телефон" Binding="{Binding Telephone}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Foreground="WhiteSmoke" Header="Логин" Binding="{Binding Login}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Foreground="WhiteSmoke" Header="Пароль" Binding="{Binding Password}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Foreground="WhiteSmoke" Header="Должность" Binding="{Binding PostWorker}" ClipboardContentBinding="{x:Null}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <WrapPanel Margin="6,0,248,0" Height="85" VerticalAlignment="Bottom">
+                        <TextBox x:Name="TBPass" materialDesign:HintAssist.Hint="Введите данные паспорта" Foreground="WhiteSmoke" Background="#FF181B28" BorderBrush="WhiteSmoke" Height="30" Margin="0 10 10 0" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120" PreviewKeyDown="TBPass_PreviewKeyDown"/>
+                        <TextBox x:Name="TBTel"  materialDesign:HintAssist.Hint="Введите данные Телефон" Foreground="WhiteSmoke" Background="#FF181B28" BorderBrush="WhiteSmoke"  TextWrapping="Wrap" Margin="0 10 10 0" Text="" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120" PreviewKeyDown="TBPass_PreviewKeyDown" />
+                        <TextBox x:Name="TBLast"  materialDesign:HintAssist.Hint="Введите данные паспорта" Foreground="WhiteSmoke" Background="#FF181B28" BorderBrush="WhiteSmoke" Height="30"  TextWrapping="Wrap" Margin="0 10 10 0" Text="" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120" PreviewKeyDown="TBPass_PreviewKeyDown" />
+                        <TextBox x:Name="TBLog"  materialDesign:HintAssist.Hint="Введите данные паспорта"  Foreground="WhiteSmoke" Background="#FF181B28" BorderBrush="WhiteSmoke"  TextWrapping="Wrap" Text="" Margin="0 10 10 0" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120" PreviewKeyDown="TBPass_PreviewKeyDown" />
+                        <TextBox x:Name="TBName"  materialDesign:HintAssist.Hint="Введите данные паспорта" Foreground="WhiteSmoke" Background="#FF181B28"  BorderBrush="WhiteSmoke"  TextWrapping="Wrap" Text="" Margin="0 10 10 0" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120" PreviewKeyDown="TBPass_PreviewKeyDown" />
+                        <TextBox x:Name="TBSur"  materialDesign:HintAssist.Hint="Введите данные паспорта" Foreground="WhiteSmoke" Background="#FF181B28" BorderBrush="WhiteSmoke"  TextWrapping="Wrap" Text="" Margin="0 10 10 0" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120" PreviewKeyDown="TBPass_PreviewKeyDown" />
+                        <ComboBox x:Name="CBPost"  materialDesign:HintAssist.Hint="Введите данные паспорта"  Foreground="Black" Background="WhiteSmoke" Height="30" VerticalAlignment="Bottom" SelectedIndex="0" Margin="0 10 10 0" HorizontalAlignment="Left" Width="120"/>
+                    </WrapPanel>
+                    <StackPanel Margin="0,0,52,6" HorizontalAlignment="Right" Width="97" Height="105" VerticalAlignment="Bottom">
+                        <Button x:Name="BTAdd"  Foreground="WhiteSmoke" Background="#FF181B28" BorderBrush="WhiteSmoke" Content="Добавить" Margin="0 3"  VerticalAlignment="Bottom" Width="90" Click="BTAdd_Click"/>
+                        <Button x:Name="BTEdit"  Foreground="WhiteSmoke" Background="#FF181B28" BorderBrush="WhiteSmoke" Content="Редактировать" Margin="0 3"  VerticalAlignment="Bottom" Width="90" Click="BTEdit_Click"/>
+                        <Button x:Name="BTDell"  Foreground="WhiteSmoke" Background="#FF181B28" BorderBrush="WhiteSmoke" Content="Удалить" Margin="0 3"  Width="90" Height="20" VerticalAlignment="Bottom" Click="BTDell_Click"/>
+                        <Button x:Name="BTClear"  Foreground="WhiteSmoke" Background="#FF181B28" BorderBrush="WhiteSmoke" Content="Отчистить" Margin="0 3" VerticalAlignment="Bottom" Width="90" Click="BTClear_Click"/>
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+            <TabItem x:Name ="TI2" Header="Клиенты" Height="151"  Foreground="Gray"  Background="#FF181B28">
+                <Grid x:Name="Grid2" Background="#FF181B28" Margin="0,1,-5,-1">
+
+                    <DataGrid x:Name="DGDeclarant" Background="#FF181B28"  Margin="-2,-3,2,115" AutoGenerateColumns="False" IsReadOnly="True" SelectedCellsChanged="DGWorker_SelectedCellsChanged" Foreground="#FF0C0101">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="0.27*" Header="Паспортные данные" Binding="{Binding PassportDeclarant }" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Header="Фамилия" Binding="{Binding Lastname}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Header="Имя" Binding="{Binding Firstname}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Header="Отчество" Binding="{Binding Surname}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Header="Телефон" Binding="{Binding Telephone}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Header="Дата рождения" Binding="{Binding DateOfbirth}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Header="Социальный статус" Binding="{Binding SocialStatus}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Header="Номер единого документа" Binding="{Binding IdSingleHousingDocument}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Header="Актуальный адрес проживания" Binding="{Binding ActualAddressOfResidence}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn Width="0.2*" Header="Адрес регистрации" Binding="{Binding RegistrationAddress}" ClipboardContentBinding="{x:Null}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TI1" Header="Заявления" Height="151" Foreground="Gray"  Background="#FF181B28">
+                <Grid Background="#FF181B28"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
